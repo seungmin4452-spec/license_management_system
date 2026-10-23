@@ -1,0 +1,35 @@
+{
+  "description": "RentalDesk 이전 형식(rentaldesk-legacy) 고정 예제. RentalDesk licensing.py의 issue_license로 만들고 verify_license로 확인했다. 테스트 전용 키 — 제품에 넣지 말 것.",
+  "generator": "tools/gen_legacy_fixtures_rentaldesk.py",
+  "test_key": {
+    "key_id": null,
+    "seed_hex": "33aa444077607b3f8203deef115c91b930395f70f694788b7a47003438995561",
+    "public_key_hex": "6175f38c001ee447066d27d79f28d68f2a4d1d331f9356f67e90cb83ad0897aa"
+  },
+  "cases": [
+    {
+      "name": "영구",
+      "file_text": "{\n  \"license\": {\n    \"format_version\": 1,\n    \"license_id\": \"3d6e8f10-2b4c-4d5e-8f90-1a2b3c4d5e6f\",\n    \"product\": \"RentalDesk\",\n    \"edition\": \"standard\",\n    \"customer_label\": \"OO렌탈\",\n    \"machine_code\": \"ABCD2EFGH3IJKL4MNOP5\",\n    \"issued_at_utc\": \"2026-10-23T05:00:00Z\",\n    \"expires_at_utc\": null,\n    \"updates_through\": \"1.0\"\n  },\n  \"signature\": \"+FOnlv72RwLD2C6j+Cb8lU8a+XjoFpVyUhHlCBclZ20gmvcXVI5b41tQoJER+nyqJlMGhsH3ag++XkGlcDUeCw==\"\n}",
+      "message_utf8": "{\"customer_label\":\"OO렌탈\",\"edition\":\"standard\",\"expires_at_utc\":null,\"format_version\":1,\"issued_at_utc\":\"2026-10-23T05:00:00Z\",\"license_id\":\"3d6e8f10-2b4c-4d5e-8f90-1a2b3c4d5e6f\",\"machine_code\":\"ABCD2EFGH3IJKL4MNOP5\",\"product\":\"RentalDesk\",\"updates_through\":\"1.0\"}",
+      "machine_code": "ABCD2EFGH3IJKL4MNOP5",
+      "verify_now": "2026-10-25T00:00:00Z",
+      "app_verify": "VALID"
+    },
+    {
+      "name": "기간제(마지막 사용일 2026-11-23)",
+      "file_text": "{\n  \"license\": {\n    \"format_version\": 1,\n    \"license_id\": \"5a7b9c1d-3e4f-4a5b-9c6d-7e8f9a0b1c2d\",\n    \"product\": \"RentalDesk\",\n    \"edition\": \"standard\",\n    \"customer_label\": \"OO렌탈\",\n    \"machine_code\": \"ABCD2EFGH3IJKL4MNOP5\",\n    \"issued_at_utc\": \"2026-10-23T05:00:00Z\",\n    \"expires_at_utc\": \"2026-11-23T14:59:59Z\",\n    \"updates_through\": \"1.0\"\n  },\n  \"signature\": \"OW8hXcrlfskfvFOShc7bYRdzw4W/613xU/BGwcdi41Tv5grczNESKi3rdrQdjo9R6BzyVULLam5vbc1N+Rd3AA==\"\n}",
+      "message_utf8": "{\"customer_label\":\"OO렌탈\",\"edition\":\"standard\",\"expires_at_utc\":\"2026-11-23T14:59:59Z\",\"format_version\":1,\"issued_at_utc\":\"2026-10-23T05:00:00Z\",\"license_id\":\"5a7b9c1d-3e4f-4a5b-9c6d-7e8f9a0b1c2d\",\"machine_code\":\"ABCD2EFGH3IJKL4MNOP5\",\"product\":\"RentalDesk\",\"updates_through\":\"1.0\"}",
+      "machine_code": "ABCD2EFGH3IJKL4MNOP5",
+      "verify_now": "2026-11-23T14:59:58Z",
+      "app_verify": "VALID"
+    },
+    {
+      "name": "특수 문자 표시명",
+      "file_text": "{\n  \"license\": {\n    \"format_version\": 1,\n    \"license_id\": \"7c9d1e2f-4a5b-4c6d-8e7f-9a0b1c2d3e4f\",\n    \"product\": \"RentalDesk\",\n    \"edition\": \"standard\",\n    \"customer_label\": \"한글 \\\"따옴표\\\" \\\\ 역슬래시 / 슬래시 ☕ 😀 A\\tB\",\n    \"machine_code\": \"ABCD2EFGH3IJKL4MNOP5\",\n    \"issued_at_utc\": \"2026-10-23T05:00:00Z\",\n    \"expires_at_utc\": null,\n    \"updates_through\": \"1.2\"\n  },\n  \"signature\": \"6WgACwj4pNeh+ogggTpkKZew4A+RyqpJWj7JekCpcWztFCNs2vZ6aHOVn0w5IRtQxK/JqbJ8H/3VMPYnkXouAQ==\"\n}",
+      "message_utf8": "{\"customer_label\":\"한글 \\\"따옴표\\\" \\\\ 역슬래시 / 슬래시 ☕ 😀 A\\tB\",\"edition\":\"standard\",\"expires_at_utc\":null,\"format_version\":1,\"issued_at_utc\":\"2026-10-23T05:00:00Z\",\"license_id\":\"7c9d1e2f-4a5b-4c6d-8e7f-9a0b1c2d3e4f\",\"machine_code\":\"ABCD2EFGH3IJKL4MNOP5\",\"product\":\"RentalDesk\",\"updates_through\":\"1.2\"}",
+      "machine_code": "ABCD2EFGH3IJKL4MNOP5",
+      "verify_now": "2026-10-25T00:00:00Z",
+      "app_verify": "VALID"
+    }
+  ]
+}

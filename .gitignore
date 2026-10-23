@@ -1,0 +1,30 @@
+# Swift / Xcode
+.build/
+.swiftpm/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+xcuserdata/
+
+# 배포 산출물
+dist/
+
+# macOS
+.DS_Store
+
+# 데이터·백업(고객 정보 포함) — 저장소에 넣지 않는다
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# 서명 비밀키 — 절대 커밋하지 않는다
+*.private.pem
+*private*.pem
+signing_key.json
+*.p8
+*.p12
+
+# Python / Node 부산물
+__pycache__/
+node_modules/

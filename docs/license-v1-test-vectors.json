@@ -1,0 +1,1107 @@
+{
+  "description": "lms-license v1 테스트 벡터 (docs/license-format-v1.md). 테스트 전용 키 — 제품에 넣지 말 것.",
+  "test_key": {
+    "key_id": "test-2026",
+    "seed_hex": "1bfc75df0725762603c83d8d2b2d7fcd814709ce5c35d2b24a18fee04deac1a1",
+    "public_key_hex": "f6d8f9d2aa6f3cdc7e42f6a877fa90ab99b037d60f0c5b7b078943f8d5fbf1fb"
+  },
+  "pc_id_cases": [
+    {
+      "raw": "4C4C4544-0042-3510-8058-B4C04F4A4E32",
+      "device_hash": "4f9605a5215d68aa2cdcf7e673fd71e82654f24331443521337ca88a5400faca",
+      "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+      "display": "7IO36-4GQ6P-GKV25-YX5MD-RQLS4"
+    },
+    {
+      "raw": "  6f3b2a10-1234-4abc-9def-0123456789ab \r\n",
+      "device_hash": "6fbb991f843d18151c9f7b0b21fac1e5fa41f7cbfd5b755d7856879aa198267f",
+      "pc_id": "3AGBREM5KK6D4BUW2EXKNLVHE",
+      "display": "3AGBR-EM5KK-6D4BU-W2EXK-NLVHE"
+    },
+    {
+      "raw": "{8E0B7C2D-3F4A-4B5C-9D6E-7F8091A2B3C4}",
+      "device_hash": "44819d86e99e90a9d5c596ccc15bed488a5281a52fd49aa390b20bd48e5df595",
+      "pc_id": "AYIISKWUQJVSJG4HRLFXB5N3T",
+      "display": "AYIIS-KWUQJ-VSJG4-HRLFX-B5N3T"
+    }
+  ],
+  "license_cases": [
+    {
+      "name": "영구, 버전 제한 없음",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "기간제 기간 안",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "시작 시각 정각은 유효",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-23T05:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "시작 1초 전",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-23T04:59:59Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "not_yet_valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "만료 1초 전은 유효",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-11-24T14:59:59Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "만료 시각 정각은 만료",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-11-24T15:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "expired",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "미래 시작 라이선스",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-12-01T15:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "4Vzb/do4sOA3dRJ0n3a4w8ek/SoSj1/WY0O1uDprWMtrLo0z+0tZjLnvY4w3oT7fzJEp9LOQ7XihiBFL09VQDw=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "not_yet_valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-12-01T15:00:00Z\"}"
+    },
+    {
+      "name": "패치 버전은 허용",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.99"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "다음 부 버전은 거부",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.1.0"
+      },
+      "expect": "version",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "이전 주 버전은 허용",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "0.9.0"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "다른 PC",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "3AGBREM5KK6D4BUW2EXKNLVHE",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "pc_id",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "다른 제품",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "OTHERPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "hpQzbfp0pL/hBYgb+WTem/6zf70yloLzaPc0MrrybSihkm1I1kBISlvJepqNcLMQVtIa8Kx+GQ/SO3BPFZCjDQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "product",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"OTHERPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "서명 후 내용 변경",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "다른 고객",
+          "options": {}
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "bad_signature",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"다른 고객\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "알 수 없는 key_id",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "unknown-key",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "unknown_key",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "같은 key_id, 다른 키로 서명",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "5T8c8fVzJ1RtmCTap6wcseFdCaAnKsvzm5Z8wlKMUm6uWyQPhAhTE0ob/UIChp+5zsB3eNbmST6s9eNB5JvJAg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "bad_signature",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "접두어 없이 서명(구형식 서명 재사용 시도)",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "Ec7h9V9ZVnh8Iyt6oH1bLS0LgOFMdoQTbSP+dnCaUSHP3zcXvIr0HaQzH+VXJUnndVPm7RP01ltNngmGtxYVDg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "bad_signature",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "특수 문자 정규화",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "한글 \"따옴표\" \\ 역슬래시 / 슬래시 ☕",
+          "options": {
+            "seats": "3",
+            "z_note": "a/b"
+          }
+        },
+        "signature": "LZz8G6tDxaD8Qa8jABhbefCD/Kk6aDK5w28RWOFen9s3zc0k8NI1fYcMMz0poQoOcC/RdGFqIozQlP3EsSjqBg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"한글 \\\"따옴표\\\" \\\\ 역슬래시 / 슬래시 ☕\",\"max_version\":null,\"options\":{\"seats\":\"3\",\"z_note\":\"a/b\"},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "payload에 정의되지 않은 필드",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {},
+          "extra": "x"
+        },
+        "signature": "+Ga1/M0rPRiZ2tZtRN5M5iDZoG2eeGWgEjvcyxXwUS+o83sbCJnakhQ6I+KEkAnvQRl1AtNjn2wWiTANe4e6Bg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"extra\":\"x\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "payload 필드 누락",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈"
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "숫자 값 사용",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": 1,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "Jc3LkXdNgE70fhpwN1BshEo/YJzZobIIJRWBJFQ7oncBJQ3ADEzrExrOk2uZE4V05xqMO53FxsgOPVq3zoVqDQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":1,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "만료가 시작보다 이르거나 같음",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-10-23T05:00:00Z",
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "ozwu4zrAxE0Gz++IogGiKBwgylmyFif/EDK9XTBr9QSJ94WmxZVz8rrrE7wZaK0pOUoT2BdwH2EB+/oQD3I2Dw=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-10-23T05:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "소문자 pc_id",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7io364gq6pgkv25yx5mdrqls4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "36nXq4YWgl387SAaAqBgTkVDmVRkQjcp2Fw664rnPlm2EefN8Y2CriSm327WfxA/Fp67puvWnmijxha2/ijdCw=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7io364gq6pgkv25yx5mdrqls4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "밀리초가 있는 시각",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00.000Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "8JXpI2OBxYWouNbkWsuaTsOXHizLnRrg9E1qxZ92LFyHqRsMNmCKvdTale9hCfd65s1qiHm7b3Z6Z/tNqh1FCQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00.000Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "licensee 앞뒤 공백",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": " OO렌탈",
+          "options": {}
+        },
+        "signature": "/SV5WU5NtsTNX/H+8G6mffUqDinHnsbj7l/9Ev3562+yQ8Dn8+abXWIAYFeGKP6sIRDdHdRW7YPk+TzYLX67DA=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\" OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "licensee 제어 문자",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO\n렌탈",
+          "options": {}
+        },
+        "signature": "wNL62x8uKz3t+keO7oINAbwUpJIL7IT7amrYVaWHCTK3SZFIhTksoA1NaU8iKLEU0Q4sMPRp1KKid7MdTbKyDA=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO\\n렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "licensee 앞 BOM",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "﻿OO렌탈",
+          "options": {}
+        },
+        "signature": "TwjibOehqdNd/uDBQHkHcOW7bvoGdg8bmtZhPTaW/qc/Nwbku7+Aqi2x81l+NUHp9rtNkceefzuw3/SZpv1YDw=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"﻿OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "licensee 끝 전각 공백",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈　",
+          "options": {}
+        },
+        "signature": "iZnirpM0m/JTyqZnC1hHAL+uxE8za23MHkMKV3p0vbLXavZeWCdq1Wd4iq8FssFSw+39EyWKYauFQnCX2AKJAQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈　\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "licensee 가운데 공백은 허용",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO 렌탈",
+          "options": {}
+        },
+        "signature": "BdGB03awPnqK6fIaIKrGabrX7v8vdrOyP+xE7eWA542brKby61YWo8gZFLv69svwHLXLQAv4C5RK2l1ukHcsAQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO 렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "licensee 100자(이모지 포함, 코드 포인트 기준)",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+          "options": {}
+        },
+        "signature": "QE45/32/R4QJRy8Ss20NM6TW6kPbm3kHwY8sOImHYoXKJ1GHCjZijdGJ2VJLAYpP3qSJ365+c0963Dcj0dSsDw=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "licensee 101자",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가",
+          "options": {}
+        },
+        "signature": "NoZQlFrtAZZKp4wVN4mdpnp2i0ZW+hZrZI8ZrKfqNJuC7fm/WWwm0YIPtSIi977mGEOemNWHjT2xBfMn2u8xDw=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "없는 날짜",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-02-30T00:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "cvyBns/XFeFIFmJvB3JDgPSp4guE0iN5u0975Yla1Dz/PCXgaESR4rtygDDk47vdK1j/f63bzMXMHIifLfdoBA=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-02-30T00:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "0000년",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "0000-01-01T00:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "J+csIYpTampq2TAqahowlXQcn3YkyLGOxQpZ+R7sPjQq/TqXvtb0CHLI8cA/oj1pRFB35z6ibjjc0QQbQVDrDA=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"0000-01-01T00:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "봉투 version 2",
+      "file": {
+        "format": "lms-license",
+        "version": 2,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDg=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "봉투에 정의되지 않은 필드",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDg==",
+        "note": "x"
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "서명 Base64 오류",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "not base64!!"
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "비정규 Base64 표기",
+      "file": {
+        "format": "lms-license",
+        "version": 1,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": null,
+          "edition": "standard",
+          "max_version": null,
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "YR658VdUT7oIzomitUzqyphlDZ92vufMKHYae/P0MeP3+YoR6+e/Lp316huMaV2mfMtfhGCDTWRRgFY3cH4KDh=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "format",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":null,\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":null,\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    },
+    {
+      "name": "봉투 version 1.0은 1과 같음",
+      "file": {
+        "format": "lms-license",
+        "version": 1.0,
+        "key_id": "test-2026",
+        "payload": {
+          "license_id": "6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69",
+          "product_code": "TESTPRODUCT",
+          "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+          "issued_at": "2026-10-23T05:00:00Z",
+          "starts_at": "2026-10-23T05:00:00Z",
+          "expires_at": "2026-11-24T15:00:00Z",
+          "edition": "standard",
+          "max_version": "1.0",
+          "licensee": "OO렌탈",
+          "options": {}
+        },
+        "signature": "aQO0x1Bsq8R4YIAu4OrUjFPSL+PQb+ENh+9VhCtsli5dvnDS9NZxGyXfMhqA4sn+zBDCau8lSPl/kncPcAC6DQ=="
+      },
+      "context": {
+        "product_code": "TESTPRODUCT",
+        "pc_id": "7IO364GQ6PGKV25YX5MDRQLS4",
+        "now": "2026-10-25T00:00:00Z",
+        "app_version": "1.0.3"
+      },
+      "expect": "valid",
+      "message_utf8": "lms-license-v1:{\"edition\":\"standard\",\"expires_at\":\"2026-11-24T15:00:00Z\",\"issued_at\":\"2026-10-23T05:00:00Z\",\"license_id\":\"6f1c2a4e-1b7d-4c55-9a51-0f2d3c4b5a69\",\"licensee\":\"OO렌탈\",\"max_version\":\"1.0\",\"options\":{},\"pc_id\":\"7IO364GQ6PGKV25YX5MDRQLS4\",\"product_code\":\"TESTPRODUCT\",\"starts_at\":\"2026-10-23T05:00:00Z\"}"
+    }
+  ]
+}

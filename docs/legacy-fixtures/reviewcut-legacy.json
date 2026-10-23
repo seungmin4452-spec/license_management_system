@@ -1,0 +1,32 @@
+{
+  "description": "ReviewCut 이전 형식(reviewcut-legacy) 고정 예제. ReviewCut core.ts의 signLicense로 만들고 verifyLicense로 확인했다. 테스트 전용 키 — 제품에 넣지 말 것.",
+  "generator": "tools/gen_legacy_fixtures_reviewcut.mjs",
+  "test_key": {
+    "key_id": "test-legacy",
+    "seed_hex": "33aa444077607b3f8203deef115c91b930395f70f694788b7a47003438995561",
+    "public_key_hex": "6175f38c001ee447066d27d79f28d68f2a4d1d331f9356f67e90cb83ad0897aa"
+  },
+  "cases": [
+    {
+      "name": "표시명 있음",
+      "file_text": "{\n  \"payload\": {\n    \"schema\": 1,\n    \"productId\": \"kr.reviewcut.app\",\n    \"productMajor\": 1,\n    \"licenseId\": \"0b7f3a52-5d0e-4c1a-9a8e-3f6b2d1c4e5a\",\n    \"installId\": \"VRN-7KQ2-M9XA-3PDF\",\n    \"edition\": \"full\",\n    \"licensee\": \"OO스튜디오\",\n    \"issuedAt\": \"2026-10-23T05:00:00.000Z\"\n  },\n  \"signature\": \"FA9q6RMnwwk3MvRqrcGeJySq2W9FDd2JNBlt8VGeXV2ao1693FwgPrErvGYG6F0xLLdkIhNkcuDpsOFnlVoaDQ==\",\n  \"keyId\": \"test-legacy\"\n}\n",
+      "message_utf8": "{\"edition\":\"full\",\"installId\":\"VRN-7KQ2-M9XA-3PDF\",\"issuedAt\":\"2026-10-23T05:00:00.000Z\",\"licenseId\":\"0b7f3a52-5d0e-4c1a-9a8e-3f6b2d1c4e5a\",\"licensee\":\"OO스튜디오\",\"productId\":\"kr.reviewcut.app\",\"productMajor\":1,\"schema\":1}",
+      "install_id": "VRN-7KQ2-M9XA-3PDF",
+      "app_verify": "ok"
+    },
+    {
+      "name": "표시명 없음(필드 생략)",
+      "file_text": "{\n  \"payload\": {\n    \"schema\": 1,\n    \"productId\": \"kr.reviewcut.app\",\n    \"productMajor\": 1,\n    \"licenseId\": \"0b7f3a52-5d0e-4c1a-9a8e-3f6b2d1c4e5a\",\n    \"installId\": \"VRN-7KQ2-M9XA-3PDF\",\n    \"edition\": \"full\",\n    \"issuedAt\": \"2026-10-23T05:00:00.000Z\"\n  },\n  \"signature\": \"apjXoKGMNOGiP14wymq+o3vfLqYgyTuCyYl2s17UO+zTwE8N5D3FGgLI/XDij53NfdERuLZrcMhfuqWDBeYRDA==\",\n  \"keyId\": \"test-legacy\"\n}\n",
+      "message_utf8": "{\"edition\":\"full\",\"installId\":\"VRN-7KQ2-M9XA-3PDF\",\"issuedAt\":\"2026-10-23T05:00:00.000Z\",\"licenseId\":\"0b7f3a52-5d0e-4c1a-9a8e-3f6b2d1c4e5a\",\"productId\":\"kr.reviewcut.app\",\"productMajor\":1,\"schema\":1}",
+      "install_id": "VRN-7KQ2-M9XA-3PDF",
+      "app_verify": "ok"
+    },
+    {
+      "name": "특수 문자 표시명",
+      "file_text": "{\n  \"payload\": {\n    \"schema\": 1,\n    \"productId\": \"kr.reviewcut.app\",\n    \"productMajor\": 1,\n    \"licenseId\": \"9c2e4f61-7a3b-4d8c-b1e2-5f6a7b8c9d0e\",\n    \"installId\": \"VRN-7KQ2-M9XA-3PDF\",\n    \"edition\": \"full\",\n    \"licensee\": \"한글 \\\"따옴표\\\" \\\\ 역슬래시 / 슬래시 ☕ 😀 A\\tB\",\n    \"issuedAt\": \"2026-10-23T05:00:00.123Z\"\n  },\n  \"signature\": \"hTsWWXOz6noZ35FHgXOKnRBLOXD/F+4IQoZeNM4U4tEo0ui/hDssksOFYn3NY5R/3H6EVbV7+XybBaTONhh6AA==\",\n  \"keyId\": \"test-legacy\"\n}\n",
+      "message_utf8": "{\"edition\":\"full\",\"installId\":\"VRN-7KQ2-M9XA-3PDF\",\"issuedAt\":\"2026-10-23T05:00:00.123Z\",\"licenseId\":\"9c2e4f61-7a3b-4d8c-b1e2-5f6a7b8c9d0e\",\"licensee\":\"한글 \\\"따옴표\\\" \\\\ 역슬래시 / 슬래시 ☕ 😀 A\\tB\",\"productId\":\"kr.reviewcut.app\",\"productMajor\":1,\"schema\":1}",
+      "install_id": "VRN-7KQ2-M9XA-3PDF",
+      "app_verify": "ok"
+    }
+  ]
+}
