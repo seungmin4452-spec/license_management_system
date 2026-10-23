@@ -154,6 +154,29 @@ final class LegacyFormatTests: XCTestCase {
         XCTAssertEqual(gen.validate(r, now: now), [])
     }
 
+    /// `tools/verify_generated_with_apps.sh` 가 환경 변수로 폴더를 주면, 관리 프로그램(Swift)이 새로 서명한 파일을 저장한다.
+    /// 그 파일을 각 앱 저장소의 검증 코드(verifyLicense, verify_license)로 다시 확인한다.
+    func testExportGeneratedFilesForAppVerification() throws {
+        guard let dir = ProcessInfo.processInfo.environment["LMS_EXPORT_FIXTURES_DIR"] else {
+            throw XCTSkip("LMS_EXPORT_FIXTURES_DIR 없음(앱 교차 검증 스크립트에서만 실행)")
+        }
+        let out = URL(fileURLWithPath: dir)
+        let rc = try Fixtures.json("docs/legacy-fixtures/reviewcut-legacy.json")
+        let (seed, _, keyId) = try loadKey(rc)
+        let now = Fixtures.utc("2026-10-23T05:00:00Z")
+        let rcFile = try ReviewCutLegacyGenerator().generate(
+            LicenseRequest(productCode: "", pcScheme: .reviewcutInstallId, pcRaw: "VRN-7KQ2-M9XA-3PDF", pcNormalized: "VRN-7KQ2-M9XA-3PDF",
+                           issuedAt: now, startsAt: now, expiresAt: nil, licensee: "한글 \"따옴표\" / 😀", edition: "full", maxVersion: nil),
+            signing: SigningMaterial(keyId: keyId!, privateKey: Ed25519Keys.privateKey(seed: seed)), now: now)
+        try rcFile.fileBytes.write(to: out.appendingPathComponent("reviewcut.json"))
+
+        let rdFile = try RentalDeskLegacyGenerator().generate(
+            LicenseRequest(productCode: "", pcScheme: .rentaldeskMachineV0, pcRaw: "ABCD2EFGH3IJKL4MNOP5", pcNormalized: "ABCD2EFGH3IJKL4MNOP5",
+                           issuedAt: now, startsAt: now, expiresAt: nil, licensee: "OO렌탈 \"본점\" / ☕", edition: "standard", maxVersion: "1.0"),
+            signing: SigningMaterial(keyId: "rentaldesk-2026", privateKey: Ed25519Keys.privateKey(seed: seed)), now: now)
+        try rdFile.fileBytes.write(to: out.appendingPathComponent("rentaldesk.json"))
+    }
+
     // MARK: 자동 판별
 
     func testInspectAnyDetectsFormats() throws {

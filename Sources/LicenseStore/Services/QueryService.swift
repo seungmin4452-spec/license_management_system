@@ -64,9 +64,15 @@ public struct DashboardStats: Equatable {
 }
 
 /// 통합 검색 결과
+public struct PCSearchHit: Identifiable {
+    public var pc: CustomerPC
+    public var customerName: String
+    public var id: Int64 { pc.id ?? 0 }
+}
+
 public struct UnifiedSearchResult {
     public var customers: [Customer]
-    public var pcs: [(pc: CustomerPC, customerName: String)]
+    public var pcs: [PCSearchHit]
     public var licenses: [LicenseRow]
     public var isEmpty: Bool { customers.isEmpty && pcs.isEmpty && licenses.isEmpty }
 }
@@ -186,7 +192,7 @@ public final class QueryService {
         guard let q = query.nilIfEmpty else { return UnifiedSearchResult(customers: [], pcs: [], licenses: []) }
         let like = SQLText.like(q)
         let pcLike = Self.pcQuery(q).map(SQLText.like) ?? like
-        let (customers, pcs) = try db.read { db -> ([Customer], [(pc: CustomerPC, customerName: String)]) in
+        let (customers, pcs) = try db.read { db -> ([Customer], [PCSearchHit]) in
             let cs = try Customer.fetchAll(db, sql: """
                 SELECT * FROM customer WHERE name LIKE ? ESCAPE '\\' OR contactPerson LIKE ? ESCAPE '\\'
                 ORDER BY isArchived, name COLLATE NOCASE LIMIT 200
@@ -198,7 +204,7 @@ public final class QueryService {
                    OR customer_pc.numberNormalized LIKE ? ESCAPE '\\' OR customer_pc.alias LIKE ? ESCAPE '\\'
                 ORDER BY customer_pc.id LIMIT 200
                 """, arguments: [like, like, pcLike, like])
-            let ps = try rows.map { (pc: try CustomerPC(row: $0), customerName: $0["_customerName"] as String) }
+            let ps = try rows.map { PCSearchHit(pc: try CustomerPC(row: $0), customerName: $0["_customerName"] as String) }
             return (cs, ps)
         }
         var f = LicenseFilter(query: q)

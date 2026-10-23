@@ -1,0 +1,4 @@
+management_ref,customer_id,customer_name,customer_contact,product_code,pc_scheme,pc_number,pc_alias,starts_at,expires_at,last_use_day,issued_at,status,file_license_id,generator,edition,max_version,memo,source_id
+ORDER-0001,,예시상사,,RENTALDESK,lms-pc-v1,7IO36-4GQ6P-GKV25-YX5MD-RQLS4,사무실 PC,2026-01-05,,2027-01-05,2026-01-05 10:30,issued,,,,,예제 행,example-1
+ORDER-0002,,예시스튜디오,,REVIEWCUT,reviewcut-install-id,VRN-7KQ2-M9XA-3PDF,,2026-02-01T01:00:00Z,,,,issued,,,,,,example-2
+ORDER-0003,,예시공방,,OTHERAPP,manual,00123-ab,,2026-03-01,2026-06-01 00:00,,,취소됨,,,,,앞자리 0 보존 예,example-3

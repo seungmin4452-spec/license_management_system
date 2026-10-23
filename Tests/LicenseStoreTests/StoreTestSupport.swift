@@ -19,8 +19,8 @@ final class TestEnv {
     let tempDir: URL?
 
     init(file: Bool = false, now: String = "2026-10-23T05:00:00Z") throws {
-        clock = TestClock(now)
-        let c = clock
+        let c = TestClock(now)
+        clock = c
         if file {
             let dir = FileManager.default.temporaryDirectory.appendingPathComponent("lms-test-\(UUID().uuidString)")
             let paths = AppPaths(root: dir)
